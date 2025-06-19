@@ -9,17 +9,17 @@ spec:
   replicas: 5
   selector:
     matchLabels:
-      app: nginx-1-28
+      app: nginx
       version: green
   template:
     metadata:
       labels:
-        app: nginx-1-28
+        app: nginx
         version: green
     spec:
       containers:
         - name: nginx
           image: <+artifact.image>
           ports:
-            - containerPort: <+pipeline.variables.port>
+            - containerPort: 8080
 
