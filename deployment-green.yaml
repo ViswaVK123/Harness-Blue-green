@@ -1,24 +1,25 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: <+service.name>-green
+  name: nginx-1-28-green
   labels:
-    app: <+service.name>
+    app: nginx-1-28
     version: green
 spec:
-  replicas: 2
+  replicas: 5
   selector:
     matchLabels:
-      app: <+service.name>
+      app: nginx-1-28
       version: green
   template:
     metadata:
       labels:
-        app: <+service.name>
+        app: nginx-1-28
         version: green
     spec:
       containers:
-        - name: <+service.name>
+        - name: nginx
           image: <+artifact.image>
           ports:
             - containerPort: <+pipeline.variables.port>
+

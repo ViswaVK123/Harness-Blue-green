@@ -1,1 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-1-25-blue
+  labels:
+    app: nginx-1-25
+    version: blue
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      app: nginx
+      version: blue
+  template:
+    metadata:
+      labels:
+        app: nginx
+        version: blue
+    spec:
+      containers:
+        - name: nginx
+          image: <+artifact.image>
+          ports:
+            - containerPort: <+pipeline.variables.port>
 
