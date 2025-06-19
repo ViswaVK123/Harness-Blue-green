@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: <+service.name>-blue
+  labels:
+    app: <+service.name>
+    version: blue
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      app: <+service.name>
+      version: blue
+  template:
+    metadata:
+      labels:
+        app: <+service.name>
+        version: blue
+    spec:
+      containers:
+        - name: <+service.name>
+          image: <+artifact.image>
+          ports:
+            - containerPort: <+pipeline.variables.port>
